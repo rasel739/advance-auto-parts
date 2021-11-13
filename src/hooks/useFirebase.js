@@ -114,7 +114,7 @@ const useFirebase = () => {
 
     const userData = { name: name, email: email }
 
-    fetch("http://localhost:5000/userLoginData", {
+    fetch("https://advance-auto-part.herokuapp.com/userLoginData", {
       
       method: method,
       headers: { "content-type": "application/json" },
@@ -125,7 +125,7 @@ const useFirebase = () => {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:5000/userAdmin/${user?.email}`)
+    fetch(`https://advance-auto-part.herokuapp.com/userAdmin/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setAdmin(data[0]?.role));
 
