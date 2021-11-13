@@ -1,0 +1,129 @@
+ [
+   {
+     "title": "Bulbs",
+     "price": 25,
+     "deletePrice": 30,
+     "image": "https://i.ibb.co/KFSstvd/bulbs-1.jpg",
+     "description": "Manufactured from top quality components, this is your best option and inexpensive replacement for your rebuild, repair, and maintenance needs - an OE replacement product for your damaged or aged factory part.Replacement - the most affordable brand name for replacement parts that you need! Replacement is a professional brand for autobody, lighting parts, electrical, brake, suspension, intake and exhaust, and cooling and heating products. All Replacement brands include 1-year, unlimited-mileage warranty.",
+     "rating": 5,
+     "location":"Driver Or Passenger Side",
+     "warranty":"1-year Replacement unlimited-mileage war",
+     "returnPolicy":"90-Day Return Policy",
+     "quantitySolid":"Sold individually",
+     "type":"D2S Bulb Type",
+     "warning":"This product can expose you to chemical which is known to the State of California to cause cancer and birth defects or other reproductive harm. For more information go to"
+
+   },
+   {
+     "title": "Shocks",
+     "price": 50,
+     "deletePrice": 60,
+     "top": 8,
+     "image": "https://i.ibb.co/k38xJ9C/shocks-2.jpg",
+     "description": "Manufactured from top quality components, this is your best option and inexpensive replacement for your rebuild, repair, and maintenance needs - an OE replacement product for your damaged or aged factory part.Replacement - the most affordable brand name for replacement parts that you need! Replacement is a professional brand for autobody, lighting parts, electrical, brake, suspension, intake and exhaust, and cooling and heating products. All Replacement brands include 1-year, unlimited-mileage warranty.",
+     "rating": 4.5,
+     "location": "Driver Or Passenger Side",
+     "warranty": "1-year Replacement unlimited-mileage war",
+     "returnPolicy": "90-Day Return Policy",
+     "quantitySolid": "Sold individually",
+     "type": "Shocks BCE009",
+     "warning": "This product can expose you to chemical which is known to the State of California to cause cancer and birth defects or other reproductive harm. For more information go to"
+   },
+   {
+     "title": "Cranks Pistons",
+     "price": 35,
+     "deletePrice": 40,
+     "top": 6,
+     "image": "https://i.ibb.co/RzDpQ5R/cranks-pistons-3.jpg",
+     "description": "Manufactured from top quality components, this is your best option and inexpensive replacement for your rebuild, repair, and maintenance needs - an OE replacement product for your damaged or aged factory part.Replacement - the most affordable brand name for replacement parts that you need! Replacement is a professional brand for autobody, lighting parts, electrical, brake, suspension, intake and exhaust, and cooling and heating products. All Replacement brands include 1-year, unlimited-mileage warranty.",
+     "rating": 4.8,
+     "location": "Driver Or Passenger Side",
+     "warranty": "1-year Replacement unlimited-mileage war",
+     "returnPolicy": "90-Day Return Policy",
+     "quantitySolid": "Sold individually",
+     "type": "Cranks-6665",
+     "warning": "This product can expose you to chemical which is known to the State of California to cause cancer and birth defects or other reproductive harm. For more information go to"
+   },
+   {
+     "title": "Control Arms",
+     "price": 39.55,
+     "deletePrice": 50,
+     "top": 1,
+     "image": "https://i.ibb.co/MpMq4cT/control-arms-4.jpg",
+     "description": "Manufactured from top quality components, this is your best option and inexpensive replacement for your rebuild, repair, and maintenance needs - an OE replacement product for your damaged or aged factory part.Replacement - the most affordable brand name for replacement parts that you need! Replacement is a professional brand for autobody, lighting parts, electrical, brake, suspension, intake and exhaust, and cooling and heating products. All Replacement brands include 1-year, unlimited-mileage warranty.",
+     "rating": 4,
+     "location": "Driver Or Passenger Side",
+     "warranty": "1-year Replacement unlimited-mileage war",
+     "returnPolicy": "90-Day Return Policy",
+     "quantitySolid": "Sold individually",
+     "type": "C44 Control Type",
+     "warning": "This product can expose you to chemical which is known to the State of California to cause cancer and birth defects or other reproductive harm. For more information go to"
+   },
+   {
+     "title": "Bearing",
+     "price": 27,
+     "deletePrice": 35,
+     "top": 1,
+     "image": "https://i.ibb.co/zJ4w4fQ/bearing-5.jpg",
+     "description": "Manufactured from top quality components, this is your best option and inexpensive replacement for your rebuild, repair, and maintenance needs - an OE replacement product for your damaged or aged factory part.Replacement - the most affordable brand name for replacement parts that you need! Replacement is a professional brand for autobody, lighting parts, electrical, brake, suspension, intake and exhaust, and cooling and heating products. All Replacement brands include 1-year, unlimited-mileage warranty.",
+     "rating": 3.9,
+     "location": "Driver Or Passenger Side",
+     "warranty": "1-year Replacement unlimited-mileage war",
+     "returnPolicy": "90-Day Return Policy",
+     "quantitySolid": "Sold individually",
+     "type": "BDQ33 Type",
+     "warning": "This product can expose you to chemical which is known to the State of California to cause cancer and birth defects or other reproductive harm. For more information go to"
+   },
+   {
+     "title": "Wheel",
+     "price": 45,
+     "deletePrice": 55,
+     "top": 1,
+     "image": "https://i.ibb.co/r2VZj2Q/wheel-6.jpg",
+     "description": "Manufactured from top quality components, this is your best option and inexpensive replacement for your rebuild, repair, and maintenance needs - an OE replacement product for your damaged or aged factory part.Replacement - the most affordable brand name for replacement parts that you need! Replacement is a professional brand for autobody, lighting parts, electrical, brake, suspension, intake and exhaust, and cooling and heating products. All Replacement brands include 1-year, unlimited-mileage warranty.",
+     "rating": 5,
+     "location": "Driver Or Passenger Side",
+     "warranty": "1-year Replacement unlimited-mileage war",
+     "returnPolicy": "90-Day Return Policy",
+     "quantitySolid": "Sold individually",
+     "type": "WDE0433 Wheel Type",
+     "warning": "This product can expose you to chemical which is known to the State of California to cause cancer and birth defects or other reproductive harm. For more information go to"
+   },
+   {
+     "title": "Thermostat",
+     "price": 60,
+     "deletePrice": 77,
+     "top": 1,
+     "image": "https://i.ibb.co/NtyXwT9/thermostat-7.jpg",
+     "description": "Manufactured from top quality components, this is your best option and inexpensive replacement for your rebuild, repair, and maintenance needs - an OE replacement product for your damaged or aged factory part.Replacement - the most affordable brand name for replacement parts that you need! Replacement is a professional brand for autobody, lighting parts, electrical, brake, suspension, intake and exhaust, and cooling and heating products. All Replacement brands include 1-year, unlimited-mileage warranty.",
+     "rating": 4.9,
+     "location": "Driver Or Passenger Side",
+     "warranty": "1-year Replacement unlimited-mileage war",
+     "returnPolicy": "90-Day Return Policy",
+     "quantitySolid": "Sold individually",
+     "type": "T5406 Thermostat Type",
+     "warning": "This product can expose you to chemical which is known to the State of California to cause cancer and birth defects or other reproductive harm. For more information go to"
+   },
+   {
+     "title": "Brake Discs",
+     "price": 85,
+     "deletePrice": 95,
+     "top": 1,
+     "image": "https://i.ibb.co/HHFqKQw/brake-discs-8.jpg",
+     "description": "Manufactured from top quality components, this is your best option and inexpensive replacement for your rebuild, repair, and maintenance needs - an OE replacement product for your damaged or aged factory part.Replacement - the most affordable brand name for replacement parts that you need! Replacement is a professional brand for autobody, lighting parts, electrical, brake, suspension, intake and exhaust, and cooling and heating products. All Replacement brands include 1-year, unlimited-mileage warranty.",
+     "rating": 5,
+     "location": "Driver Or Passenger Side",
+     "warranty": "1-year Replacement unlimited-mileage war",
+     "returnPolicy": "90-Day Return Policy",
+     "quantitySolid": "Sold individually",
+     "type": "B4353 Brake ",
+     "warning": "This product can expose you to chemical which is known to the State of California to cause cancer and birth defects or other reproductive harm. For more information go to"
+   }
+ ]
+
+ 
+
+
+
+
+

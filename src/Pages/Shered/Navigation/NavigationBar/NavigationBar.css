@@ -1,0 +1,12 @@
+.navigation-bar{
+    text-decoration: none;
+    color:white;
+    margin-right:1rem;
+
+}
+
+.selected{
+    border-bottom: .2rem solid orange;
+    border-radius: .1rem;
+
+}
