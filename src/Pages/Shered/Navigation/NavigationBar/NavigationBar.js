@@ -10,8 +10,8 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { Container } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Container,  ListItemText,  useTheme } from "@mui/material";
+import { NavLink,Link } from "react-router-dom";
 import title from '../../../../images/car-title-2.png'
 import Button from "@mui/material/Button";
 import LoginIcon from "@mui/icons-material/Login";
@@ -25,6 +25,12 @@ import Stack from "@mui/material/Stack";
 import useAuth from "../../../../hooks/useAuth";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import useMyOrder from "../../../../hooks/useMyOrder";
+import { makeStyles } from "@mui/styles";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+
 
 const StyledBadgeD = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -36,10 +42,27 @@ const StyledBadgeD = styled(Badge)(({ theme }) => ({
 }));
 
 const NavigationBar = () => {
-  
+
+  const theme = useTheme()
+
+  const useStyle = makeStyles({
+    navIcon: {
+      [theme.breakpoints.up("sm")]: {
+        display: "none",
+      },
+    },
+    navItemContainer: {
+      [theme.breakpoints.down("sm")]: {
+        display: "none",
+      },
+    },
+  });
+
+  const { navIcon, navItemContainer } = useStyle();
+
   const [myOrder] = useMyOrder();
 
-  const { user, LogOut } = useAuth();
+  const { user, LogOut ,admin} = useAuth();
 
      const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -83,17 +106,17 @@ const NavigationBar = () => {
       sx={{ marginTop: 6 }}
     >
       {user?.email ? (
-        <Box>
+        <Box style={admin?{display:'none'}:{display:'block'}}>
           <MenuItem onClick={handleMenuClose}>
-            <NavLink to="/dashboard">
+            <NavLink to="/dashboard" style={{ textDecoration: "none" }}>
               <Button variant="contained">
                 <DashboardIcon /> Dashboard
               </Button>
             </NavLink>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <NavLink to="/login">
-              <Button onClick={LogOut} variant="contained">
+            <NavLink to="/login" style={{ textDecoration: "none" }}>
+              <Button onClick={LogOut} color="error" variant="contained">
                 <LogoutIcon /> LogOut
               </Button>
             </NavLink>
@@ -108,6 +131,18 @@ const NavigationBar = () => {
           </NavLink>
         </MenuItem>
       )}
+      {admin && (
+        <Box>
+          
+          <MenuItem onClick={handleMenuClose}>
+            <NavLink to="/login" style={{ textDecoration: "none" }}>
+              <Button onClick={LogOut} color="error" variant="contained">
+                <LogoutIcon /> LogOut
+              </Button>
+            </NavLink>
+          </MenuItem>
+        </Box>)
+        }
     </Menu>
   );
 
@@ -135,6 +170,7 @@ const NavigationBar = () => {
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
+          className={navIcon}
         >
           <AccountCircle />
         </IconButton>
@@ -170,7 +206,36 @@ const NavigationBar = () => {
       },
     },
   }));
-    return (
+
+  const [state, setState] = React.useState(false);
+
+  
+
+  const list = (
+    <Box sx={{ width: 250 }} role="presentation">
+      <List>
+        <ListItem button>
+          <ListItemText>
+            <Link to="/home">HOME</Link>
+          </ListItemText>
+        </ListItem>
+
+        <ListItem button>
+          <ListItemText>
+            <Link
+            to="/hot-deals-all"
+          >
+            HOT DEALS ALL
+          </Link>
+          </ListItemText>
+        </ListItem>
+      </List>
+      <Divider />
+    </Box>
+  );
+
+  return (
+    <>
       <Container sx={{ backgroundColor: "#1976D2" }} maxWidth="xl">
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
@@ -181,6 +246,8 @@ const NavigationBar = () => {
                 color="inherit"
                 aria-label="open drawer"
                 sx={{ mr: 2 }}
+                className={navIcon}
+                onClick={() => setState(true)}
               >
                 <MenuIcon />
               </IconButton>
@@ -190,66 +257,73 @@ const NavigationBar = () => {
                 component="div"
                 sx={{ display: { xs: "none", sm: "block" } }}
               >
-                <img src={title} alt="" />
+                <img src={title} sx={{ width: "100%" }} alt="" />
               </Typography>
-              <Box sx={{ flexGrow: 1 }}>
-                <NavLink
-                  to="/home"
-                  className="navigation-bar"
-                  activeClassName="selected"
-                >
-                  HOME
-                </NavLink>
-                <NavLink
-                  to="/hot-deals-all"
-                  className="navigation-bar"
-                  activeClassName="selected"
-                >
-                  HOT DEALS ALL
-                </NavLink>
-                <NavLink
-                  to="/populer-catagorie-all"
-                  className="navigation-bar"
-                  activeClassName="selected"
-                >
-                  POPULAR CATEGORIE
-                </NavLink>
-                <NavLink
-                  to="/shop"
-                  className="navigation-bar"
-                  activeClassName="selected"
-                >
-                  ABOUT US
-                </NavLink>
-                <NavLink
-                  to="/shop"
-                  className="navigation-bar"
-                  activeClassName="selected"
-                >
-                  CONTACT US
-                </NavLink>
-                <NavLink
-                  to="/add-parts"
-                  className="navigation-bar"
-                  activeClassName="selected"
-                >
-                  Add parts
-                </NavLink>
-                <NavLink
-                  to="/admin"
-                  className="navigation-bar"
-                  activeClassName="selected"
-                >
-                  <Button variant="contained">
-                    <AdminPanelSettingsIcon /> ADMIN
-                  </Button>
-                </NavLink>
-                <IconButton aria-label="cart">
-                  <StyledBadgeD badgeContent={myOrder?.length} color="secondary">
-                    <ShoppingCartIcon />
-                  </StyledBadgeD>
-                </IconButton>
-              </Box>
+              <Toolbar>
+                <Box sx={{ flexGrow: 1 }} className={navItemContainer}>
+                  <NavLink
+                    to="/home"
+                    className="navigation-bar"
+                    activeClassName="selected"
+                  >
+                    HOME
+                  </NavLink>
+                  <NavLink
+                    to="/hot-deals-all"
+                    className="navigation-bar"
+                    activeClassName="selected"
+                  >
+                    HOT DEALS ALL
+                  </NavLink>
+                  <NavLink
+                    to="/populer-catagorie-all"
+                    className="navigation-bar"
+                    activeClassName="selected"
+                  >
+                    POPULAR CATEGORIE
+                  </NavLink>
+                  <NavLink
+                    to="/shop"
+                    className="navigation-bar"
+                    activeClassName="selected"
+                  >
+                    ABOUT US
+                  </NavLink>
+                  <NavLink
+                    to="/shop"
+                    className="navigation-bar"
+                    activeClassName="selected"
+                  >
+                    CONTACT US
+                  </NavLink>
+
+                  {admin && (
+                    <NavLink
+                      to="/admin"
+                      className="navigation-bar"
+                      activeClassName="selected"
+                    >
+                      <Button variant="contained" color="success">
+                        <AdminPanelSettingsIcon /> ADMIN
+                      </Button>
+                    </NavLink>
+                  )}
+
+                  <IconButton
+                    aria-label="cart"
+                    style={
+                      admin ? { display: "none" } : { display: "inline-block" }
+                    }
+                  >
+                    <StyledBadgeD
+                      badgeContent={myOrder?.length}
+                      color="secondary"
+                    >
+                      <ShoppingCartIcon />
+                    </StyledBadgeD>
+                  </IconButton>
+                </Box>
+              </Toolbar>
               <Box sx={{ flexGrow: 1 }} />
               {user?.email ? (
                 <Box sx={{ display: { xs: "none", md: "flex" } }}>
@@ -301,7 +375,13 @@ const NavigationBar = () => {
           {renderMenu}
         </Box>
       </Container>
-    );
+      <div>
+            <Drawer open={state} onClose={() => setState(false)}>
+             {list}
+            </Drawer>
+      </div>
+    </>
+  );
 };
 
 export default NavigationBar;

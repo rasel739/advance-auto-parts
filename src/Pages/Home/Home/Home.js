@@ -6,6 +6,8 @@ import HotDeals from '../HotDeals/HotDeals/HotDeals';
 import NewArrivals from '../NewArrivals/NewArrivals';
 import OfferAllCarsPart from '../OfferAllCarsPart/OfferAllCarsPart/OfferAllCarsPart';
 import PopularCategories from '../PopularCategories/PopularCategories';
+import Review from '../Review/Review/Review';
+import ReviewAdd from '../Review/ReviewAdd/ReviewAdd';
 import VehicleSlider from '../VehicleSlider/VehicleSlider';
 
 const Home = () => {
@@ -22,6 +24,8 @@ const Home = () => {
         <NewArrivals></NewArrivals>
         <OfferAllCarsPart></OfferAllCarsPart>
         <HotDeals></HotDeals>
+        <Review></Review>
+        <ReviewAdd></ReviewAdd>
         <Footer></Footer>
       </div>
     );

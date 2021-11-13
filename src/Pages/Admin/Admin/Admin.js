@@ -19,10 +19,17 @@ import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import AddParts from "../../AddParts/AddParts";
 import AllOrder from "../AllOrder/AllOrder/AllOrder";
+import MakeAdmin from "../MakeAdmin/MakeAdmin";
+import { Button } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
+import useAuth from '../../../hooks/useAuth';
+import Grid from "@mui/material/Grid";
 
 
 const Admin = () => {
-    document.title = "Admin";
+  document.title = "Admin";
+  
+  const { admin,LogOut } = useAuth();
 
     let { path, url } = useRouteMatch();
     
@@ -37,9 +44,44 @@ const Admin = () => {
           sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
         >
           <Toolbar>
-            <Typography variant="h6" noWrap component="div">
-              <AdminPanelSettingsRoundedIcon /> Admin Panel
-            </Typography>
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                display: "flex",
+                justifyContent: "evenly",
+                alignItems: "center",
+              }}
+            >
+              <Grid item xs={8}>
+                <Box>
+                  <Typography
+                    variant="h6"
+                    noWrap
+                    component="div"
+                    sx={{ textAlign: "left" }}
+                  >
+                    <AdminPanelSettingsRoundedIcon /> Admin Panel
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item xs={4}>
+                <Box>
+                  {admin && (
+                    <NavLink to="/login" style={{textDecoration: "none"}}>
+                      <Button
+                        onClick={LogOut}
+                        color="error"
+                        variant="contained"
+                      >
+                        <LogoutIcon />
+                        Admin LogOut
+                      </Button>
+                    </NavLink>
+                  )}
+                </Box>
+              </Grid>
+            </Grid>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -72,7 +114,7 @@ const Admin = () => {
                 <NavLink
                   activeClassName="admin-selected"
                   className="admin-custom"
-                  to={`${url}/login`}
+                  to={`${url}/make-admin`}
                 >
                   <SupervisorAccountIcon /> MAKE ADMIN
                 </NavLink>
@@ -93,10 +135,13 @@ const Admin = () => {
           <Toolbar />
           <Switch>
             <Route path={`${path}/allOrder`}>
-                <AllOrder></AllOrder>
+              <AllOrder></AllOrder>
             </Route>
             <Route path={`${path}/add-car-parts`}>
               <AddParts></AddParts>
+            </Route>
+            <Route path={`${path}/make-admin`}>
+              <MakeAdmin></MakeAdmin>
             </Route>
           </Switch>
         </Box>

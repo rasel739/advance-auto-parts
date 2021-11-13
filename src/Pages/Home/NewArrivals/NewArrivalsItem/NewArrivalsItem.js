@@ -20,16 +20,16 @@ import DialogContentText from "@mui/material/DialogContentText";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 const NewArrivalsItem = ({ carPart}) => {
-    const {user} = useAuth()
+    const {user,admin} = useAuth()
     const history = useHistory()
       const [open, setOpen] = React.useState(false);
 
  const actions = [
    { icon: <VisibilitySharpIcon onClick={() =>handleDetails(carPart._id)} />, name: "Parts Details" },
    { icon: <FavoriteBorderSharpIcon />, name: "Favorite Parts" },
-   { icon: <AddShoppingCartSharpIcon onClick={()=>handleAddToCart()} />, name: "Add To Cart" },
+   { icon: admin? '': <AddShoppingCartSharpIcon onClick={()=>handleAddToCart()} />, name: "Add To Cart" },
     ];
-    
+   
     const handleDetails = (id) => {
 
        history.push(`/car-parts-all/${id}`);
@@ -157,3 +157,6 @@ const NewArrivalsItem = ({ carPart}) => {
 };
 
 export default NewArrivalsItem;
+
+
+ 

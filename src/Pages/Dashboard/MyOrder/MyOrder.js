@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './MyOrder.css';
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -11,16 +11,14 @@ import Box from "@mui/material/Box";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+// import Dialog from "@mui/material/Dialog";
+// import DialogActions from "@mui/material/DialogActions";
+// import DialogContent from "@mui/material/DialogContent";
+// import DialogContentText from "@mui/material/DialogContentText";
+// import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 const MyOrder = ({ myorder }) => {
 
-   const [deleteConfirm, setDeleteConfirm] = useState(false);
-   const [open, setOpen] = React.useState(false);
   const [count, setCount] = React.useState(1);
 
  
@@ -39,33 +37,15 @@ const MyOrder = ({ myorder }) => {
        _id
   } = myorder;
   
-  const handleClickOpen = () => {
-    setOpen(true);
-     handleDeleteConfirm()
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  
 
  
-  const handleDeleteConfirm = () => {
-
-    setDeleteConfirm(true);
-
-    if (deleteConfirm) {
-      
-       handleClose()
-    }
-
-    console.log(deleteConfirm)
-    
-  }
+  
 
 
   const handleDelete = (Id) => {
 
-      handleClickOpen();
+     const deleteConfirm = window.confirm('Are you sure you want to delete')
 
     if (deleteConfirm) {
       
@@ -181,7 +161,7 @@ const MyOrder = ({ myorder }) => {
             </ButtonGroup>
           </Grid>
         </Paper>
-        <div>
+        {/* <div>
           <Dialog
             open={open}
             onClose={handleClose}
@@ -207,7 +187,7 @@ const MyOrder = ({ myorder }) => {
               </Button>
             </DialogActions>
           </Dialog>
-        </div>
+        </div> */}
       </>
     );
 };

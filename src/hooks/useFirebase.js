@@ -26,6 +26,8 @@ const githubProvider = new GithubAuthProvider();
 
 const useFirebase = () => {
 
+   const [admin, setAdmin] = useState('')
+  
     const [loading,setLoading] = useState(true)
 
     const [user, setUser] = useState({});
@@ -35,16 +37,20 @@ const useFirebase = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
             
-                const user = result.user;
+              const user = result.user;
+
+              updateProfile(auth.currentUser, {
+                displayName: name,
+              });
 
               setUser(user);
               
-              updateProfile(auth.currentUser, {
-                
-                  displayName:name,
-              })
+              
 
-                setTimeout(() => {
+             
+              
+              setTimeout(() => {
+                   handleUserData(user?.displayName, user?.email, "POST");
                     LogOut();
                     history.push("/login");
                     
@@ -61,7 +67,7 @@ const useFirebase = () => {
         signInWithEmailAndPassword(auth, email, password)
           .then((result) => {
             const user = result.user;
-
+            handleUserData(user?.displayName, user?.email,"PUT");
             setUser(user);
             history.push(redirect_url);
           })
@@ -80,7 +86,7 @@ const useFirebase = () => {
         signInWithPopup(auth, googleProvider)
           .then((result) => {
             const user = result.user;
-
+            handleUserData(user?.displayName, user?.email,"PUT");
             setUser(user);
             history.push(redirect_url);
           })
@@ -95,14 +101,35 @@ const useFirebase = () => {
         signInWithPopup(auth, githubProvider)
           .then((result) => {
             const user = result.user;
-
+            handleUserData(user?.displayName, user?.email,"PUT");
             setUser(user);
             history.push(redirect_url);
           })
           .finally(() => {
             setLoading(false);
           });
-    }
+  }
+  
+  const handleUserData = (name,email,method) => {
+
+    const userData = { name: name, email: email }
+
+    fetch("http://localhost:5000/userLoginData", {
+      
+      method: method,
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(userData)
+    });
+    
+    console.log(userData);
+  }
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/userAdmin/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setAdmin(data[0]?.role));
+
+  },[user?.email])
 
     useEffect(() => {
 
@@ -140,6 +167,7 @@ const useFirebase = () => {
       handleGoogleSignIn,
       loading,
       handleGithubSignIn,
+      admin
     };
 };
 

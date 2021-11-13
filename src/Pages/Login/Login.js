@@ -14,7 +14,6 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import {
   NavLink,
 } from 'react-router-dom';
-import {Alert} from "@mui/material";
 import useAuth from '../../hooks/useAuth';
 import { useLocation,useHistory } from "react-router";
 
@@ -25,7 +24,7 @@ const Login = () => {
 
   const history = useHistory();
   
-  const { user, handleEmailSignIn, handleGoogleSignIn, handleGithubSignIn } =
+  const {  handleEmailSignIn, handleGoogleSignIn, handleGithubSignIn } =
     useAuth();
 
   
@@ -140,11 +139,6 @@ const Login = () => {
                     </Button>
                   </Box>
                 </form>
-              </Box>
-              <Box sx={{ marginTop: 2 }}>
-                {user?.email && (
-                  <Alert severity="success">Login successfully</Alert>
-                )}
               </Box>
             </Grid>
             <Grid item xs={6}>

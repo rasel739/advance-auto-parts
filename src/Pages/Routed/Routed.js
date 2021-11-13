@@ -12,6 +12,7 @@ import HotDealsAll from '../HotDealsAll/HotDealsAll/HotDealsAll';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import AuthProvider from '../../context/AuthProvider';
 import AddParts from '../AddParts/AddParts';
+import AdminPrivateRoute from '../Admin/AdminPrivateRoute/AdminPrivateRoute';
 
 const Routed = () => {
   
@@ -25,9 +26,9 @@ const Routed = () => {
             <Route exact path="/home">
               <Home></Home>
             </Route>
-            <PrivateRoute path="/admin">
+            <AdminPrivateRoute path="/admin">
               <Admin></Admin>
-            </PrivateRoute>
+            </AdminPrivateRoute>
             <PrivateRoute path="/hot-deals-all">
               <HotDealsAll></HotDealsAll>
             </PrivateRoute>

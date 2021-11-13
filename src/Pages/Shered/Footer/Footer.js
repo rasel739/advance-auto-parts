@@ -15,7 +15,7 @@ import paymentIcon from '../../../images/payment-icon.webp'
 const Footer = () => {
 
     return (
-      <Container>
+      <Container sx={{ paddingTop: 10}}>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={3}>
