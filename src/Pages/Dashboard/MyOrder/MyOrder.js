@@ -11,20 +11,11 @@ import Box from "@mui/material/Box";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-// import Dialog from "@mui/material/Dialog";
-// import DialogActions from "@mui/material/DialogActions";
-// import DialogContent from "@mui/material/DialogContent";
-// import DialogContentText from "@mui/material/DialogContentText";
-// import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+
 
 const MyOrder = ({ myorder }) => {
 
   const [count, setCount] = React.useState(1);
-
- 
-
-  
-// acknowledged: true, deletedCount: 1 
 
      const {
        deletePrice,
@@ -37,11 +28,6 @@ const MyOrder = ({ myorder }) => {
        _id
   } = myorder;
   
-  
-
- 
-  
-
 
   const handleDelete = (Id) => {
 

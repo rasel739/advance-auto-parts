@@ -18,10 +18,6 @@ import Paper from "@mui/material/Paper";
 import Footer from '../../Shered/Footer/Footer';
 
 
-
-
-
-
 const HotDealsDetails = () => {
     document.title = 'Hot Deals Details';
     const [carDetails] = useCarSingleDetails()

@@ -6,9 +6,9 @@ const useReview = () => {
     
 
     useEffect(() => {
-        fetch("http://localhost:5000/getReview")
-            .then(res => res.json())
-            .then(data => setReview(data))
+        fetch("https://advance-auto-part.herokuapp.com/getReview")
+          .then((res) => res.json())
+          .then((data) => setReview(data));
 
     },[review])
 

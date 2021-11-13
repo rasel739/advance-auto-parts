@@ -15,14 +15,11 @@ const MakeAdmin = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = (data) => {
 
-      fetch("http://localhost:5000/makeAdmin", {
+      fetch("https://advance-auto-part.herokuapp.com/makeAdmin", {
         method: "PUT",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(data)
-      }).then(result => {
-          
-        
-        })
+        body: JSON.stringify(data),
+      }).then((result) => {});
        
         reset();
 
