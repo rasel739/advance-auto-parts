@@ -28,12 +28,17 @@ import Grid from "@mui/material/Grid";
 
 const Admin = () => {
   document.title = "Admin";
-  
+
   const { admin,LogOut } = useAuth();
 
-    let { path, url } = useRouteMatch();
+  let { path, url } = useRouteMatch();
+  
     
-    const drawerWidth = 240;
+  const drawerWidth = 240;
+
+  
+
+
 
   return (
     <>
@@ -68,7 +73,7 @@ const Admin = () => {
               <Grid item xs={4}>
                 <Box>
                   {admin && (
-                    <NavLink to="/login" style={{textDecoration: "none"}}>
+                    <NavLink to="/login" style={{ textDecoration: "none" }}>
                       <Button
                         onClick={LogOut}
                         color="error"
@@ -101,13 +106,13 @@ const Admin = () => {
           >
             <List sx={{ width: "100%", textAlign: "left" }}>
               <Box sx={{ borderBottom: 1, color: "white", marginBottom: 2 }}>
-                <NavLink
-                  activeClassName="admin-selected"
-                  className="admin-custom"
-                  to={`${url}/allOrder`}
-                >
-                  <ShoppingBasketIcon /> ALL ORDER
-                </NavLink>
+                  <NavLink
+                    activeClassName="admin-selected"
+                    className="admin-custom"
+                    to={`${url}/allOrder`}
+                  >
+                    <ShoppingBasketIcon /> ALL ORDER
+                  </NavLink>
               </Box>
 
               <Box sx={{ borderBottom: 1, color: "white", marginBottom: 2 }}>
@@ -142,6 +147,9 @@ const Admin = () => {
             </Route>
             <Route path={`${path}/make-admin`}>
               <MakeAdmin></MakeAdmin>
+            </Route>
+            <Route path="*">
+              <AllOrder></AllOrder>
             </Route>
           </Switch>
         </Box>

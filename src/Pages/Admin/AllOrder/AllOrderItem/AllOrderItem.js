@@ -8,7 +8,6 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
-import UpdateIcon from "@mui/icons-material/Update";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -17,6 +16,13 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
+import { useForm } from "react-hook-form";
+import { TextField } from '@mui/material';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 const style = {
   position: "absolute",
@@ -37,13 +43,19 @@ const Liststyle = {
 };
 
 
+
 const AllOrderItem = ({ allorder }) => {
+
+  const [openStatus, setOpenStatus] = React.useState(false);
+  
+  const { register, handleSubmit } = useForm();
 
      const [open, setOpen] = React.useState(false);
      const handleOpen = () => setOpen(true);
-     const handleClose = () => setOpen(false);
+  const handleClose = () => setOpen(false);
 
-
+  
+  
     const {
       
        image,
@@ -55,8 +67,11 @@ const AllOrderItem = ({ allorder }) => {
        title,
         email,
         type,
-        _id
-    } = allorder;
+      _id,
+      status
+  } = allorder;
+  
+   
     
     const handleDeleteOrder = (Id) => {
         
@@ -68,26 +83,48 @@ const AllOrderItem = ({ allorder }) => {
           method: "DELETE",
           headers: { "content-type": "application/json" },
         }).then((result) => {
-          console.log(result);
+          if (result) {
+            
+             alert("Delete Successfully");
+        }
         });
       }
     };
    
+  
+  
+   
+  const onSubmit = (data) => {
+     
+    fetch(`https://advance-auto-part.herokuapp.com/updateStatus/${_id}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    }).then((result) => {
+      setOpenStatus(result);
+      if (result) {
+        return (
+          <Button variant="outlined" onClick={handleClickOpen}>
+            Open
+          </Button>
+        );
+      }
+    });
+  };
+
+    const handleClickOpen = () => {
+      setOpenStatus(openStatus);
+    };
+
+    const handleCloseStatus = () => {
+      setOpenStatus(false);
+    };
+    
+ 
+  
     return (
       <>
         <TableRow>
-          <TableCell component="th" scope="row">
-            {name}
-          </TableCell>
-          <TableCell align="left">
-            <Stack direction="row" spacing={2}>
-              <Avatar
-                alt="Remy Sharp"
-                src={userPhoto}
-                sx={{ width: 56, height: 56 }}
-              />
-            </Stack>
-          </TableCell>
           <TableCell align="left">{email}</TableCell>
           <TableCell align="left">{title}</TableCell>
           <TableCell align="left">
@@ -110,13 +147,24 @@ const AllOrderItem = ({ allorder }) => {
             </Button>
           </TableCell>
           <TableCell align="left">
-            <Button
-              variant="contained"
-              color="success"
-              startIcon={<UpdateIcon />}
-            >
-              Update
-            </Button>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <TextField
+                id="admin"
+                defaultValue={status}
+                size="small"
+                type="text"
+                sx={{ width: "50%" }}
+                {...register("status", { required: true })}
+              />
+              <Button
+                type="submit"
+                color="success"
+                variant="contained"
+                sx={{ width: "50%", height: "2.5rem" }}
+              >
+                Update
+              </Button>
+            </form>
           </TableCell>
         </TableRow>
         <div>
@@ -127,6 +175,30 @@ const AllOrderItem = ({ allorder }) => {
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  mb: 2,
+                }}
+              >
+                <Stack direction="row" spacing={2}>
+                  <Avatar
+                    alt="Remy Sharp"
+                    src={userPhoto}
+                    sx={{ width: 56, height: 56 }}
+                  />
+                </Stack>
+                <Typography
+                  id="modal-modal-title"
+                  variant="h6"
+                  component="h2"
+                  sx={{ ml: 2 }}
+                >
+                  {name}
+                </Typography>
+              </Box>
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 {title}
               </Typography>
@@ -170,6 +242,30 @@ const AllOrderItem = ({ allorder }) => {
               </Box>
             </Box>
           </Modal>
+        </div>
+        <div>
+          <Dialog
+            open={openStatus}
+            onClose={handleCloseStatus}
+            aria-labelledby="draggable-dialog-title"
+            sx={{ marginTop: -50 }}
+          >
+            <DialogContent sx={{ margin: 5 }}>
+              <DialogContentText>
+                <div className="add-parts">
+                  <span>
+                    <CheckCircleOutlineIcon sx={{ fontSize: "5rem" }} />
+                  </span>
+                  <span> Status Update Successfully</span>
+                </div>
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button variant="contained" onClick={handleCloseStatus}>
+                Close
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
       </>
     );

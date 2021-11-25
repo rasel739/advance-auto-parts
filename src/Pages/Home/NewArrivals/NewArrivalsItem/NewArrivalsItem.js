@@ -18,58 +18,42 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import PlaceOrder from '../../../PlaceOrder/PlaceOrder';
 
-const NewArrivalsItem = ({ carPart}) => {
-    const {user,admin} = useAuth()
+const NewArrivalsItem = ({ carPart }) => {
+  
+const [modalOpen, setModalOpen] = React.useState(false);
+const handleModalOpen = () => setModalOpen(true);
+const handleModalClose = () => setModalOpen(false);
+
+    const {user, admin} = useAuth()
     const history = useHistory()
-      const [open, setOpen] = React.useState(false);
+     const [open, setOpen] = React.useState(false);
 
  const actions = [
-   { icon: <VisibilitySharpIcon onClick={() =>handleDetails(carPart._id)} />, name: "Parts Details" },
+   {
+     icon: <VisibilitySharpIcon onClick={() => handleDetails(carPart._id)} />,
+     name: "Parts Details",
+   },
    { icon: <FavoriteBorderSharpIcon />, name: "Favorite Parts" },
-   { icon: admin? '': <AddShoppingCartSharpIcon onClick={()=>handleAddToCart()} />, name: "Add To Cart" },
-    ];
+   {
+     icon: admin
+       ? ""
+       : user?.email && <AddShoppingCartSharpIcon onClick={() => handleModalOpen()} />
+         ,
+     name: user?.email ? "Add To Cart" : "Please Login",
+   },
+ ];
    
     const handleDetails = (id) => {
 
        history.push(`/car-parts-all/${id}`);
     }
 
-    const handleAddToCart = () => {
-
-        const date = new Date();
-
-        const randomId = parseInt(Math.random()*55);
-
-        const data = carPart;
-        data.email = user?.email;
-        data.name = user?.displayName;
-        data.userPhoto = user?.photoURL;
-        data.status = 'Pending...';
-        data.Date = date.toLocaleDateString();
-        data.time = date.toLocaleTimeString();
-        data._id = data._id+randomId;
-
-        fetch("https://advance-auto-part.herokuapp.com/carPartsAddToCart", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(data),
-        }).then((result) => {
-          setOpen(result);
-          if (result) {
-            return (
-              <Button variant="outlined" onClick={handleClickOpen}>
-                Open
-              </Button>
-            );
-          }
-        });
-
-
-    }
+    
 
     const handleClickOpen = () => {
-      setOpen(open);
+      setOpen(true);
     };
 
     const handleClose = () => {
@@ -152,6 +136,13 @@ const NewArrivalsItem = ({ carPart}) => {
             </DialogActions>
           </Dialog>
         </div>
+        <PlaceOrder
+          modalOpen={modalOpen}
+          handleModalClose={handleModalClose}
+          handleClickOpen={handleClickOpen}
+          setOpen={setOpen}
+          carPart={carPart}
+        ></PlaceOrder>
       </>
     );
 };

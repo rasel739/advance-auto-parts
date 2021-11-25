@@ -7,9 +7,9 @@ import useAuth from '../../../hooks/useAuth';
 
 const AdminPrivateRoute = ({ children, ...rest }) => {
 
-    const { user, loading,admin } = useAuth()
+    const {  admin } = useAuth()
     
-    if (loading) {
+    if (!admin) {
         
         return (
           <Box sx={{ width: "100%" }}>
@@ -22,14 +22,14 @@ const AdminPrivateRoute = ({ children, ...rest }) => {
       
         <Route
             {...rest}
-            render={({ location }) =>
+            render={({ location}) =>
 
-                user?.email && admin ? (children)
+                 admin ? (children)
                     :
                     (<Redirect
                         to={{
                         
-                            pathname: '/login',
+                            pathname: '/home',
                             state:{from:location}
                     }}
                     

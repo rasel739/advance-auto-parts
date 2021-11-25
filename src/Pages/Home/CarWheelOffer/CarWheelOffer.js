@@ -3,13 +3,14 @@ import { Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import "./CarWheelOffer.css";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
+import CarWheelOfferItem from "./CarWheelOfferItem/CarWheelOfferItem";
+
 
 const CarWheelOffer = () => {
 
-    const populerCatagory = [
+    const carWheelOffer = [
       {
+        id: 12344,
         title: "Car Wheel ",
         offer: 30,
         shop: "shop now",
@@ -19,6 +20,7 @@ const CarWheelOffer = () => {
       },
 
       {
+        id: 23434,
         title: "Car Valls ",
         offer: 40,
         shop: "shop now",
@@ -28,6 +30,7 @@ const CarWheelOffer = () => {
       },
 
       {
+        id: 343544,
         title: "Car Valls ",
         offer: 50,
         shop: "shop now",
@@ -39,36 +42,20 @@ const CarWheelOffer = () => {
 
 
   return (
-    <Container sx={{ paddingTop: 5, paddingBottom: 10 }}>
+    <Container
+      sx={{ paddingTop: 5, paddingBottom: 10 }}
+      data-aos="fade-left"
+      data-aos-offset="200"
+      data-aos-delay="50"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+      data-aos-anchor-placement="top-center"
+    >
       <Box>
         <Grid container spacing={2} xs={12}>
-          {populerCatagory.map((populer) => (
+          {carWheelOffer.map((car) => (
             <Grid item xs={12} md={6} lg={4}>
-              <Paper
-                variant="outlined"
-                square
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "3.5rem",
-                  backgroundImage: `url(${populer.image})`,
-                  backgroundRepeat: "no-repeat",
-                   backgroundSize: "cover",
-                  overflow: "hidden"
-                }}
-              >
-                <Grid item xs={6}>
-                  <Typography variant="h6" gutterBottom component="div">
-                    {populer.title}
-                  </Typography>
-                  <Typography variant="h6" gutterBottom component="div">
-                    {populer.offer}% off
-                  </Typography>
-                  <Typography variant="h6" gutterBottom component="div">
-                    {populer.shop}
-                  </Typography>
-                </Grid>
-              </Paper>
+              <CarWheelOfferItem car={car} key={car.id}></CarWheelOfferItem>
             </Grid>
           ))}
         </Grid>

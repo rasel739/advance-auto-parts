@@ -46,7 +46,7 @@ const NavigationBar = () => {
   const theme = useTheme()
 
   const useStyle = makeStyles({
-    navIcon: {
+    sliderFont: {
       [theme.breakpoints.up("sm")]: {
         display: "none",
       },
@@ -212,21 +212,88 @@ const NavigationBar = () => {
   
 
   const list = (
-    <Box sx={{ width: 250 }} role="presentation">
-      <List>
+    <Box
+      sx={{ width: 250, height: 5555, backgroundColor: "#1976D2" }}
+      role="presentation"
+    >
+      <List sx={{ color: "white" }}>
         <ListItem button>
-          <ListItemText>
-            <Link to="/home">HOME</Link>
+          <ListItemText>Advance Car Parts</ListItemText>
+        </ListItem>
+        <Divider />
+        <ListItem button>
+          <ListItemText style={{ display: "flex" }}>
+            <IconButton
+              aria-label="cart"
+              style={admin ? { display: "none" } : { display: "inline-block" }}
+            >
+              <StyledBadgeD badgeContent={myOrder?.length} color="secondary">
+                <ShoppingCartIcon />
+              </StyledBadgeD>
+            </IconButton>
+            <span
+              style={{
+                marginLeft: "1rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Avatar alt="Rasel Hosain" src={user?.photoURL} />
+              <span style={{ marginLeft: ".2rem" }}>{user?.displayName}</span>
+            </span>
           </ListItemText>
         </ListItem>
-
+        <Divider />
+        <ListItem button>
+          <ListItemText>
+            <Link style={{ color: "white", textDecoration: "none" }} to="/home">
+              HOME
+            </Link>
+          </ListItemText>
+        </ListItem>
+        <Divider />
         <ListItem button>
           <ListItemText>
             <Link
-            to="/hot-deals-all"
-          >
-            HOT DEALS ALL
-          </Link>
+              style={{ color: "white", textDecoration: "none" }}
+              to="/hot-deals-all"
+            >
+              HOT DEALS ALL
+            </Link>
+          </ListItemText>
+        </ListItem>
+        <Divider />
+        <ListItem button>
+          <ListItemText>
+            <Link
+              style={{ color: "white", textDecoration: "none" }}
+              to="/populer-catagorie-all"
+            >
+              POPULAR CATEGORIE
+            </Link>
+          </ListItemText>
+        </ListItem>
+        <Divider />
+        <ListItem button>
+          <ListItemText>
+            <Link
+              style={{ color: "white", textDecoration: "none" }}
+              to="/about-us"
+            >
+              ABOUT US
+            </Link>
+          </ListItemText>
+        </ListItem>
+        <Divider />
+        <ListItem button>
+          <ListItemText>
+            <Link
+              style={{ color: "white", textDecoration: "none" }}
+              to="/contact-us"
+            >
+              CONTACT US
+            </Link>
           </ListItemText>
         </ListItem>
       </List>
@@ -283,14 +350,14 @@ const NavigationBar = () => {
                     POPULAR CATEGORIE
                   </NavLink>
                   <NavLink
-                    to="/shop"
+                    to="/about-us"
                     className="navigation-bar"
                     activeClassName="selected"
                   >
                     ABOUT US
                   </NavLink>
                   <NavLink
-                    to="/shop"
+                    to="/contact-us"
                     className="navigation-bar"
                     activeClassName="selected"
                   >
@@ -376,9 +443,9 @@ const NavigationBar = () => {
         </Box>
       </Container>
       <div>
-            <Drawer open={state} onClose={() => setState(false)}>
-             {list}
-            </Drawer>
+        <Drawer open={state} onClose={() => setState(false)}>
+          {list}
+        </Drawer>
       </div>
     </>
   );

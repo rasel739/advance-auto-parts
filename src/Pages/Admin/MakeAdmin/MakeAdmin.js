@@ -7,11 +7,15 @@ import { useForm } from "react-hook-form";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 const MakeAdmin = () => {
 
-
+     const [open, setOpen] = React.useState(false);
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = (data) => {
 
@@ -19,12 +23,32 @@ const MakeAdmin = () => {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(data),
-      }).then((result) => {});
-       
-        reset();
+      }).then((result) => {
 
-    }
-    return (
+        setOpen(result);
+        if (result) {
+          return (
+            <Button variant="outlined" onClick={handleClickOpen}>
+              Open
+            </Button>
+          );
+        }
+          reset();
+      });
+       
+      
+
+  }
+  
+  const handleClickOpen = () => {
+    setOpen(open);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  return (
+    <>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -43,7 +67,7 @@ const MakeAdmin = () => {
                     id="admin"
                     label="Admin Create a New Admin Enter Email"
                     type="text"
-                    sx={{ width: "100%", mb: 2,mt:4 }}
+                    sx={{ width: "100%", mb: 2, mt: 4 }}
                     {...register("email", { required: true })}
                   />
                   <Button
@@ -59,7 +83,32 @@ const MakeAdmin = () => {
           </Grid>
         </Grid>
       </Box>
-    );
+      <div>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="draggable-dialog-title"
+          sx={{ marginTop: -50 }}
+        >
+          <DialogContent sx={{ margin: 5 }}>
+            <DialogContentText>
+              <div className="add-parts">
+                <span>
+                  <CheckCircleOutlineIcon sx={{ fontSize: "5rem" }} />
+                </span>
+                <span>New Admin Add successfully</span>
+              </div>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button variant="contained" onClick={handleClose}>
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    </>
+  );
 };
 
 export default MakeAdmin;

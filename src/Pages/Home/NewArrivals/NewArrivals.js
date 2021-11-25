@@ -14,7 +14,15 @@ const NewArrivals = () => {
     
 
     return (
-      <Container sx={{ paddingTop: 5, paddingBottom: 80 }}>
+      <Container
+        sx={{ paddingTop: 5, paddingBottom: 80 }}
+        data-aos="fade-left"
+        data-aos-offset="200"
+        data-aos-delay="50"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out"
+        data-aos-anchor-placement="top-center"
+      >
         <Typography
           variant="h3"
           gutterBottom
@@ -35,9 +43,12 @@ const NewArrivals = () => {
           }}
         >
           <Grid container spacing={2} xs={12}>
-            {carParts.slice(0, 6).map((carPart) => (
+            {carParts?.slice(0, 6).map((carPart) => (
               <Grid item xs={12} md={6} lg={4}>
-                  <NewArrivalsItem carPart={carPart} key={carPart._id}></NewArrivalsItem>
+                <NewArrivalsItem
+                  carPart={carPart}
+                  key={carPart._id}
+                ></NewArrivalsItem>
               </Grid>
             ))}
           </Grid>

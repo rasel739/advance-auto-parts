@@ -20,20 +20,20 @@ const AddParts = () => {
      const { register, handleSubmit,reset } = useForm();
      const onSubmit = (data) => {
        
-         fetch("http://localhost:5000/addCarParts", {
-
-             method:"POST",
-             headers: { 'content-type': 'application/json' },
-             body:JSON.stringify(data)
-         }).then(result => {
-             setOpen(result)
-             if (result) {
-                 
-                 return <Button variant="outlined" onClick={handleClickOpen}>
-                        Open
-                  </Button>
-             }
-         })
+         fetch("https://advance-auto-part.herokuapp.com/addCarParts", {
+           method: "POST",
+           headers: { "content-type": "application/json" },
+           body: JSON.stringify(data),
+         }).then((result) => {
+           setOpen(result);
+           if (result) {
+             return (
+               <Button variant="outlined" onClick={handleClickOpen}>
+                 Open
+               </Button>
+             );
+           }
+         });
          reset()
     };
     
@@ -45,7 +45,7 @@ const handleClickOpen = () => {
     setOpen(false);
   };
     return (
-      <Container sx={{padding: 5,}} maxWidth="xl">
+      <Container sx={{ padding: 5 }} maxWidth="xl">
         <Box sx={{ flexGrow: 1 }}>
           <Typography
             variant="h4"
@@ -55,17 +55,18 @@ const handleClickOpen = () => {
           >
             Add Parts
           </Typography>
-          <Grid
-            container
-            spacing={2}
-            xs={12}
-            md={8}
-            lg={8}
-            sx={{ margin: "auto" }}
-          >
-            <Grid item xs={12}>
-              <Box>
-                <form onSubmit={handleSubmit(onSubmit)}>
+
+          <Box>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Grid
+                container
+                spacing={2}
+                xs={12}
+                md={8}
+                lg={12}
+                sx={{ margin: "auto" }}
+              >
+                <Grid item xs={6}>
                   <Box>
                     <TextField
                       id="title"
@@ -106,10 +107,66 @@ const handleClickOpen = () => {
                   <Box>
                     <TextField
                       id="image"
-                      label="image"
+                      label="Only Image Link "
                       type="text"
                       sx={{ width: "100%" }}
                       {...register("image", { required: true })}
+                    />
+                  </Box>
+                  <Box>
+                    <TextField
+                      id="location"
+                      label="location"
+                      type="text"
+                      sx={{ width: "100%", my: 2 }}
+                      {...register("location", { required: true })}
+                    />
+                  </Box>
+                </Grid>
+                <Grid item xs={6}>
+                  <Box>
+                    <TextField
+                      id="warranty"
+                      label="warranty"
+                      type="text"
+                      sx={{ width: "100%" }}
+                      {...register("warranty", { required: true })}
+                    />
+                  </Box>
+                  <Box>
+                    <TextField
+                      id="returnPolicy"
+                      label="return Policy"
+                      type="text"
+                      sx={{ width: "100%", my: 2 }}
+                      {...register("returnPolicy", { required: true })}
+                    />
+                  </Box>
+                  <Box>
+                    <TextField
+                      id="quantitySolid"
+                      label="quantity Solid"
+                      type="text"
+                      sx={{ width: "100%", my: 2 }}
+                      {...register("quantitySolid", { required: true })}
+                    />
+                  </Box>
+                  <Box>
+                    <TextField
+                      id="type"
+                      label="type"
+                      type="text"
+                      sx={{ width: "100%" }}
+                      {...register("type", { required: true })}
+                    />
+                  </Box>
+                  <Box>
+                    <TextField
+                      id="warning"
+                      label="warning"
+                      type="text"
+                      sx={{ width: "100%", my: 2 }}
+                      {...register("warning", { required: true })}
                     />
                   </Box>
                   <Box>
@@ -132,10 +189,10 @@ const handleClickOpen = () => {
                       Add Parts
                     </Button>
                   </Box>
-                </form>
-              </Box>
-            </Grid>
-          </Grid>
+                </Grid>
+              </Grid>
+            </form>
+          </Box>
         </Box>
         <div>
           <Dialog

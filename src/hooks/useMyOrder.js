@@ -11,7 +11,7 @@ const useMyOrder = () => {
        fetch(`https://advance-auto-part.herokuapp.com/myOrder/${user?.email}`)
          .then((res) => res.json())
          .then((data) => setMyOrder(data));
-     }, [myOrder,user]);
+     }, [user]);
     
     
     return [myOrder]

@@ -12,6 +12,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
+
 const AllOrder = () => {
 
     const [allOrder] = useAllOrder()
@@ -24,8 +25,6 @@ const AllOrder = () => {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="left">Name</TableCell>
-                  <TableCell align="left">User Photo</TableCell>
                   <TableCell align="left">Email</TableCell>
                   <TableCell align="left">Title</TableCell>
                   <TableCell align="left">View</TableCell>

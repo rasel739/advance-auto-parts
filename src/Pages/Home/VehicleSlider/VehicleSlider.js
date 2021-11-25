@@ -15,7 +15,6 @@ import carSliderTwo from '../../../images/car-part-2.png';
 import carSliderThree from '../../../images/car-part-3.png';
 import carSliderFour from '../../../images/car-part-4.png';
 
-
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 
@@ -58,10 +57,26 @@ const VehicleSlider = () => {
 
     const handleStepChange = (step) => {
       setActiveStep(step);
-    };
+  };
+  
+
+ 
 
   return (
-    <Box sx={{ maxWidth: "100%", flexGrow: 1 }}>
+    <Box
+      sx={{
+        maxWidth: "100%",
+        flexGrow: 1,
+        padding: 2,
+        bgcolor: "#f3e5f5",
+      }}
+      data-aos="flip-left"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="2000"
+      data-aos-offset="200"
+      data-aos-delay="50"
+      data-aos-anchor-placement="top-center"
+    >
       <Paper
         square
         elevation={0}
@@ -82,7 +97,7 @@ const VehicleSlider = () => {
         enableMouseEvents
       >
         {images.map((parts, index) => (
-          <div key={parts.label}>
+          <div key={parts.name}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Grid container spacing={2}>
                 <Grid
@@ -104,7 +119,7 @@ const VehicleSlider = () => {
                     >
                       {parts.title}
                     </Typography>
-                    <Typography variant="h1" component="div" gutterBottom>
+                    <Typography variant="h2" component="div" gutterBottom>
                       New Car Parts
                     </Typography>
                     <Typography variant="h4" component="div" gutterBottom>

@@ -10,6 +10,9 @@ import useAuth from '../../../hooks/useAuth';
 import Typography from "@mui/material/Typography";
 import MyOrder from '../MyOrder/MyOrder';
 import useMyOrder from '../../../hooks/useMyOrder';
+import Checkout from '../Checkout/Checkout';
+
+
 
 const Dashboard = () => {
     document.title = "Dashboard";
@@ -18,18 +21,19 @@ const Dashboard = () => {
 
   const [myOrder] = useMyOrder();
 
-   
- 
+  
+
     
     return (
-      <>
+     <>
         <NavigationBar></NavigationBar>
         <Container sx={{ paddingTop: 2 }}>
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
-              <Grid item xs={3}>
+              <Grid item xs={12} md={12} lg={3}>
                 <Typography variant="h5" component="div" gutterBottom>
-                  <span style={{color:'green'}}> Welcome</span> {user?.displayName}
+                  <span style={{ color: "green" }}> Welcome</span>{" "}
+                  {user?.displayName}
                 </Typography>
                 <Box>
                   <Paper
@@ -59,21 +63,22 @@ const Dashboard = () => {
                   </Paper>
                 </Box>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} md={12} lg={6}>
                 <Typography variant="h4" component="div" gutterBottom>
                   My Order({myOrder?.length})
                 </Typography>
+
                 <Box>
                   {myOrder.map((myorder) => (
-                    <MyOrder key={myorder._id} myorder={myorder}></MyOrder>
+                    <MyOrder
+                      key={myorder._id}
+                      myorder={myorder}
+                    ></MyOrder>
                   ))}
                 </Box>
               </Grid>
-              <Grid item xs={3}>
-                <Typography variant="h5" component="div" gutterBottom>
-                  Checkout Summary
-                </Typography>
-                <Box></Box>
+              <Grid item xs={12} md={12} lg={3}>
+                <Checkout myOrder={myOrder}></Checkout>
               </Grid>
             </Grid>
           </Box>

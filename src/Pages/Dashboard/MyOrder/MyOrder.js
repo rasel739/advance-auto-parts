@@ -6,16 +6,20 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Box from "@mui/material/Box";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import SendIcon from "@mui/icons-material/Send";
+import { Link } from 'react-router-dom';
+import PaymentIcon from "@mui/icons-material/Payment";
 
 
-const MyOrder = ({ myorder }) => {
+const MyOrder = ({ myorder}) => {
 
   const [count, setCount] = React.useState(1);
+
+   
 
      const {
        deletePrice,
@@ -39,7 +43,12 @@ const MyOrder = ({ myorder }) => {
         method: "DELETE",
         headers: { "content-type": "application/json" },
       }).then((result) => {
-        console.log(result);
+        
+        if (result) {
+          alert("Delete Successfully");
+          window.location.reload();
+        }
+
       });
       
     }
@@ -91,91 +100,94 @@ const MyOrder = ({ myorder }) => {
             >
               {Date}
             </Typography>
-            <Typography variant="h6" gutterBottom component="div">
+            <Typography
+              variant="h6"
+              gutterBottom
+              component="div"
+              sx={
+                status === "Pending..." ? { color: "red" } : { color: "green" }
+              }
+            >
               {status}
             </Typography>
+            <Button variant="outlined" startIcon={<SendIcon />}>
+              <Link to="/review-add" style={{ textDecoration: "none" }}>
+                Review
+              </Link>
+            </Button>
           </Grid>
           <Grid item xs={4}>
             <Typography variant="h6" gutterBottom component="div">
               <del style={{ color: "red" }}>${deletePrice}</del> ${price}
             </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "space",
-                padding: 3,
-              }}
-            >
-              <Button
-                variant="outlined"
-                startIcon={<ShoppingCartIcon />}
-                sx={{ marginBottom: 1 }}
+            {status === "Pending..." ? (
+              <div>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "space",
+                    padding: 3,
+                  }}
+                >
+                  <Button
+                    variant="outlined"
+                    startIcon={<PaymentIcon />}
+                    sx={{ marginBottom: 1 }}
+                  >
+                    <Link to="/payment" style={{ textDecoration: "none" }}>
+                      Payment
+                    </Link>
+                  </Button>
+                  <Button
+                    onClick={() => handleDelete(_id)}
+                    variant="outlined"
+                    color="error"
+                    startIcon={<DeleteIcon />}
+                  >
+                    DELETE
+                  </Button>
+                </Box>
+                <ButtonGroup>
+                  <Button
+                    aria-label="reduce"
+                    onClick={() => {
+                      setCount(Math.max(count - 1, 0));
+                       
+                    }}
+                    color="error"
+                  >
+                    <RemoveIcon fontSize="small" />
+                  </Button>
+                  <Button aria-label="reduce">{count}</Button>
+                  <Button
+                    aria-label="increase"
+                    onClick={() => {
+                      setCount(count + 1);
+                       
+                    }}
+                    color="success"
+                  >
+                    <AddIcon fontSize="small" />
+                  </Button>
+                </ButtonGroup>
+              </div>
+            ) : (
+              <Typography
+                variant="h6"
+                gutterBottom
+                component="div"
+                sx={{ color: "orange" }}
               >
-                Buy Now
-              </Button>
-              <Button
-                onClick={() => handleDelete(_id)}
-                variant="outlined"
-                color="error"
-                startIcon={<DeleteIcon />}
-              >
-                DELETE
-              </Button>
-            </Box>
-            <ButtonGroup>
-              <Button
-                aria-label="reduce"
-                onClick={() => {
-                  setCount(Math.max(count - 1, 0));
-                }}
-                color="error"
-              >
-                <RemoveIcon fontSize="small" />
-              </Button>
-              <Button aria-label="reduce">{count}</Button>
-              <Button
-                aria-label="increase"
-                onClick={() => {
-                  setCount(count + 1);
-                }}
-                color="success"
-              >
-                <AddIcon fontSize="small" />
-              </Button>
-            </ButtonGroup>
+                Shipping
+              </Typography>
+            )}
           </Grid>
         </Paper>
-        {/* <div>
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="draggable-dialog-title"
-            sx={{ marginTop: -50 }}
-          >
-            <DialogContent sx={{ margin: 1 }}>
-              <DialogContentText>
-                <div className="deletePopUp">
-                  <span>
-                    <DeleteForeverIcon sx={{ fontSize: "5rem" }} />
-                  </span>
-                  <span>Do you want to delete it?</span>
-                </div>
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button variant="contained" onClick={handleClose} color="error">
-                Cancel
-              </Button>
-              <Button variant="contained" onClick={handleDeleteConfirm}>
-                Confirm
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </div> */}
       </>
     );
+   
 };
 
 export default MyOrder;

@@ -13,8 +13,17 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import AuthProvider from '../../context/AuthProvider';
 import AddParts from '../AddParts/AddParts';
 import AdminPrivateRoute from '../Admin/AdminPrivateRoute/AdminPrivateRoute';
+import About from '../About/About';
+import Contact from '../Contact/Contact';
+import ReviewAdd from '../Home/Review/ReviewAdd/ReviewAdd';
+import Payment from '../Payment/Payment';
+
+
+
 
 const Routed = () => {
+
+ 
   
     return (
       <AuthProvider>
@@ -48,7 +57,19 @@ const Routed = () => {
               <Register></Register>
             </Route>
             <Route path="/add-parts">
-                <AddParts></AddParts>
+              <AddParts></AddParts>
+            </Route>
+            <Route path="/about-us">
+              <About></About>
+            </Route>
+            <Route path="/contact-us">
+              <Contact></Contact>
+            </Route>
+            <Route path="/review-add">
+              <ReviewAdd></ReviewAdd>
+            </Route>
+            <Route path="/payment">
+              <Payment></Payment>
             </Route>
             <Route path="*">
               <ErrorPage></ErrorPage>

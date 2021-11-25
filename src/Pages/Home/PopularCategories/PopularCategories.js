@@ -1,82 +1,54 @@
 import * as React from "react";
 import "./PopularCategories.css";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import Badge from "@mui/material/Badge";
+import PopularCategoriesItem from "./PopularCategoriesItem/PopularCategoriesItem";
+import usePopularCatagory from "../../../hooks/usePopularCatagory";
+
+
+
 const PopularCategories = () => {
 
-    const populerCatagory = [
-      {
-        title: "Popular Item ",
-        top: 10,
-        image:
-          "https://template.hasthemes.com/aments/aments/assets/images/categories_images/aments_categories_01.jpg",
-      },
-      {
-        title: "Populer Toyota",
-        top: 8,
-        image:
-          "https://template.hasthemes.com/aments/aments/assets/images/categories_images/aments_categories_02.jpg",
-      },
-      {
-        title: "Populer Toyota",
-        top: 6,
-        image:
-          "https://template.hasthemes.com/aments/aments/assets/images/categories_images/aments_categories_03.jpg",
-      },
-      {
-        title: "Populer Toyota",
-        top: 1,
-        image:
-          "https://template.hasthemes.com/aments/aments/assets/images/categories_images/aments_categories_05.jpg",
-      },
-    ];
+  const [popularCatagory] = usePopularCatagory()
+
+    
 
   return (
-    <Container sx={{ paddingTop: 5, paddingBottom: 15 }}>
+    <Container
+      sx={{ paddingTop: 5, paddingBottom: 15 }}
+      data-aos="fade-up"
+      data-aos-offset="200"
+      data-aos-delay="50"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+      data-aos-anchor-placement="top-center"
+    >
       <Typography
         variant="h3"
         gutterBottom
         component="div"
-        sx={{ textAlign: "left", }}
+        sx={{ textAlign: "left" }}
       >
-              Popular Categories
-            <Box sx={{ borderBottom: 1,width:'10rem',marginTop:1 }}/>
+        Popular Categories
+        <Box sx={{ borderBottom: 1, width: "10rem", marginTop: 1 }} />
       </Typography>
       <Box
         sx={{
           display: "flex",
           "& > :not(style)": {
             m: 1,
-            width: 128,
-            height: 128,
           },
         }}
       >
-        <Grid container spacing={2} xs={12}>
-          {populerCatagory.map((populer) => (
-            <Grid item xs={12} md={6} lg={3}>
-              <Badge badgeContent={populer.top} color="primary">
-                <Paper
-                  variant="outlined"
-                  square
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    padding: ".5rem",
-                  }}
-                >
-                  <Grid item xs={6}>
-                    <img src={populer.image} alt="" />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <h4>{populer.title}</h4>
-                  </Grid>
-                </Paper>
-              </Badge>
+        <Grid container spacing={2}>
+          {popularCatagory.slice(0, 4).map((populer) => (
+            <Grid item xs={6} md={6} lg={3}>
+              <PopularCategoriesItem
+                key={populer._id}
+                populer={populer}
+              ></PopularCategoriesItem>
             </Grid>
           ))}
         </Grid>

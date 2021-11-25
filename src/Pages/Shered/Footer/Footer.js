@@ -15,10 +15,15 @@ import paymentIcon from '../../../images/payment-icon.webp'
 const Footer = () => {
 
     return (
-      <Container sx={{ paddingTop: 10}}>
+      <Container
+        sx={{ paddingTop: 10, bgcolor: "primary.main", color: "white" }}
+        maxWidth="xl"
+        data-aos="fade-right"
+        
+      >
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
-            <Grid item xs={3}>
+            <Grid item xs={12} md={12} lg={3}>
               <Box>
                 <img src={footerImg} alt="" />
               </Box>
@@ -39,7 +44,7 @@ const Footer = () => {
                 01356457645
               </Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={12} lg={6}>
               <Box>
                 <Typography variant="h6" gutterBottom>
                   Subscribe Newsletter To Get Updated
@@ -82,7 +87,7 @@ const Footer = () => {
                 </Link>
               </Box>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={12} md={12} lg={3}>
               <Typography variant="h6" sx={{ textAlign: "left" }} gutterBottom>
                 Information
               </Typography>
@@ -101,12 +106,12 @@ const Footer = () => {
         </Box>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
-            <Grid item xs={8}>
+            <Grid item xs={12} md={12} lg={8}>
               <Typography variant="h6" sx={{ textAlign: "left" }} gutterBottom>
                 Copyright © 2021 Advance Auto Parts
               </Typography>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={12} md={12} lg={4}>
               <img src={paymentIcon} alt="" />
             </Grid>
           </Grid>

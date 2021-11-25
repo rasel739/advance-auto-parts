@@ -5,9 +5,13 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles";
+import { useTheme } from "@mui/material";
 
 
 const OfferAllCarsPart = () => {
+
+
     const populerCatagory = [
       {
         title: "2021 Latest Collection ",
@@ -17,13 +21,34 @@ const OfferAllCarsPart = () => {
         image:
           "https://template.hasthemes.com/aments/aments/assets/images/banner_images/aments_big-banner.jpg",
       },
-    ];
+  ];
+  
+const theme = useTheme();
+
+const useStyle = makeStyles({
+  allCarOffer: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+});
+
+const {  allCarOffer } = useStyle();
+
   return (
-    <Container sx={{ paddingTop: 30, paddingBottom: 15 }}>
+    <Container
+      sx={{ paddingTop: 30, paddingBottom: 15 }}
+      data-aos="zoom-in"
+      data-aos-offset="200"
+      data-aos-delay="50"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+      data-aos-anchor-placement="top-center"
+    >
       <Box>
         <Grid container spacing={2} xs={12}>
           {populerCatagory.map((populer) => (
-            <Grid item xs={12}>
+            <Grid item xs={12} className={allCarOffer}>
               <Paper
                 variant="outlined"
                 square

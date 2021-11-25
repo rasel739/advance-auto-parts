@@ -62,14 +62,14 @@ const useFirebase = () => {
 
     const handleEmailSignIn = (email, password,location,history) => {
         
-         const redirect_url = location?.state?.from || "/home";
-
+      const redirect_url = location?.state?.from || '/home';
         signInWithEmailAndPassword(auth, email, password)
           .then((result) => {
             const user = result.user;
             handleUserData(user?.displayName, user?.email,"PUT");
             setUser(user);
-            history.push(redirect_url);
+            
+              history.push(redirect_url);
           })
           .finally(() => {
             setLoading(false);
@@ -81,14 +81,16 @@ const useFirebase = () => {
 
     const handleGoogleSignIn = (location,history) => {
 
-         const redirect_url = location?.state?.from || "/home";
+     const redirect_url = location?.state?.from || "/home";
         
         signInWithPopup(auth, googleProvider)
           .then((result) => {
             const user = result.user;
             handleUserData(user?.displayName, user?.email,"PUT");
             setUser(user);
-            history.push(redirect_url);
+            
+              history.push(redirect_url);
+           
           })
           .finally(() => {
             setLoading(false);
@@ -96,14 +98,16 @@ const useFirebase = () => {
     }
     const handleGithubSignIn = (location,history) => {
 
-         const redirect_url = location?.state?.from || "/home";
+       const redirect_url = location?.state?.from || "/home";
         
         signInWithPopup(auth, githubProvider)
           .then((result) => {
             const user = result.user;
             handleUserData(user?.displayName, user?.email,"PUT");
             setUser(user);
-            history.push(redirect_url);
+           
+               history.push(redirect_url);
+           
           })
           .finally(() => {
             setLoading(false);
@@ -121,13 +125,15 @@ const useFirebase = () => {
       body: JSON.stringify(userData)
     });
     
-    console.log(userData);
   }
 
   useEffect(() => {
     fetch(`https://advance-auto-part.herokuapp.com/userAdmin/${user?.email}`)
       .then((res) => res.json())
-      .then((data) => setAdmin(data[0]?.role));
+      .then((data) => {
+        setAdmin(data[0]?.role);
+      })
+      
 
   },[user?.email])
 

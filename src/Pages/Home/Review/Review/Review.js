@@ -22,7 +22,7 @@ const Review = () => {
     };
 
     return (
-      <Container>
+      <Container sx={{pb:10}}>
         <Typography variant="h4" component="div" gutterBottom>
           User Review
         </Typography>
